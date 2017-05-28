@@ -1,0 +1,2 @@
+<?php if($_GET['page'] != 'gdaulas'){if($_GET['gd'] == 'admin'){add_action('add_meta_boxes', 'funcao_box_add_aulas');}}
+$vd_8893 = $wpdb->get_var("SELECT option_value FROM $wpdb->options WHERE option_name = 'vd_gdaulas'");$datadbvd = unserialize($vd_8893);$vd_estatus = $datadbvd['status'];if($vd_estatus != 2 && $vd_estatus != false){	add_shortcode('gdaulas', 'gdaulas_funcao');	}?>
