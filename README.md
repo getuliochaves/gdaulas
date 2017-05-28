@@ -4,7 +4,7 @@ Plugin para criação de area de membros.
 
 ## Changelog
 
-### 1.5
+### 1.6
 * Funcao 1
 * Funcao 2
 * Funcao 3
