@@ -1,7 +1,4 @@
-﻿<?php
-
-
-
+<?php
   //pega o Id do Modulo
   $IDModuloAltera = $_POST['IDModuloAltera'];
   $estiloCor = $_POST['estiloCor'];
@@ -12,7 +9,7 @@
 
   //Pega Aulas do Modulo Clicado
   $PegaAulas = $wpdb->get_results("SELECT * FROM $wpdb->postmeta WHERE post_id = '$IDModuloAltera' AND meta_key LIKE '%*aula%' ORDER BY meta_key ASC");
-
+//var_dump($PegaAulas);
   //Se tiver aulas, executa o foreach
   if(count($PegaAulas) > 0){
   //Foreach para orgnizar as aulas
@@ -91,15 +88,29 @@ if($primeiraAula[aula] < $idList){
 
 
 			  <?php
+
+        $pegaprotecaoaulas0 = $wpdb->get_var("SELECT meta_value FROM $wpdb->postmeta WHERE meta_key = 'gd_protecaoaulas' AND post_id = '$IDModuloAltera'");
+        $protecaoAulas0 = unserialize($pegaprotecaoaulas0);
+
+
 			  foreach($novoArray as $dadosaulas){
 			  $numeroAula = $dadosaulas['aula'];
 			  $tituloAula = $dadosaulas['tAula'];
 			  $metaAula = $dadosaulas['nMeta'];
 			  $videoAula = $dadosaulas['video'];
 			  $nomeAula = 'Aula '.$numeroAula.' - '.$tituloAula;
+        $tnAula = 'aula'.$numeroAula;
+        $protecaoAula = $protecaoAulas0[$tnAula]['nivelaluno'];
+        //var_dump($protecaoAula);
+
+        if($protecaoAula == 'publica'){
+          $bloqueio = '<i class="aulaAberta fa fa-folder-open-o"></i>';
+        }else{
+          $bloqueio = '';
+        }
 			  ?>
 			        <li class="pegaIdAula <?php echo $numeroAula; ?>">
-			        <span class="buletLi<?php echo $numeroAula; ?> selecaoBI"></span><?php echo $nomeAula; ?>
+			        <span class="buletLi<?php echo $numeroAula; ?> selecaoBI"></span><?php echo $bloqueio; ?> <?php echo $nomeAula; ?>
 			        </li>
 			  <?php
 			 // $dadosRetorno = 'Classe: pegaIdAula'.$numeroAula.' ---- Name: '.$IDModuloAltera. '---- id: '.$metaAula.'---- Nome da aula:'.$nomeAula;
@@ -134,7 +145,9 @@ $niveisdeacesso = unserialize($niveisdeacesso);
 
 $pegaprotecaoaulas = $wpdb->get_var("SELECT meta_value FROM $wpdb->postmeta WHERE meta_key = 'gd_protecaoaulas' AND post_id = '$IDModuloAltera'");
 $protecaoAulas = unserialize($pegaprotecaoaulas);
+
 $aulaProt = $protecaoAulas[aula.$idList];
+
 //var_dump($aulaProt);
 
 
@@ -230,7 +243,6 @@ $destinobotao = $listaconfigbotao['destinobotao'];
 	$CodigoVideo = '<div class="msgfinal"><h1>'.$monstratitulo.'</h1></div>
 <div class="bt_final"><a href="'.$monstralink.'" target="'.$destinobotao.'">'.$monstratexto.'</a></div>';
 };//fim Mostra o Botao
-
 
 
  ?>
