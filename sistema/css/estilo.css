@@ -14,8 +14,8 @@ body{
 .fixed-width {
     margin-left: auto;
     margin-right: auto;
-    width: 90% !important;
-    background-color: #f2f2f2 !important;
+    width: 95%;
+   
 }
 .container .one-column.column, .container .one-full.column, .container .twentyfour.columns {
 width: 110% !important;
