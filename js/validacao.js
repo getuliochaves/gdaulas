@@ -1,7 +1,7 @@
 ﻿$a = jQuery.noConflict();
 $a(document).ready(function(){
 	$a('.ctconteudoprotegido').hide();
-	$a('.salvarprot').hide();
+	$a('.salvarprot').show();
 	$a('.estilocor').hide();
 	$a('.importarxmlgd').hide();
 	$a('.exportaraulas').hide();
@@ -189,9 +189,11 @@ var dados = 'arquivogd='+arquivogd+'&idPagina='+idPagina+'&importagd=sim&enviarx
 				}
 		}
 
+		var descricaoAula = '<textarea class="descricaoaula descricao'+ultimaLI+'" placeholder="Descrição da Aula '+ultimaLI+'" name="descricao'+ultimaLI+'"></textarea>';
 
 
-		$a('#aulas').append('<li id="'+ultimaLI+'"><fieldset style="border:1px solid #999; padding:10px; margin-bottom:20px;"><legend><label class="aulas">Aula '+ultimaLI+'</label></legend><input type="text" class="tituloaula aula'+ultimaLI+'" required placeholder="Nome Aula '+ultimaLI+'" value="" name="aula'+ultimaLI+'"><textarea class="codigoaula codigo'+ultimaLI+'" placeholder="Código Aula '+ultimaLI+'" name="codigo'+ultimaLI+'">'+ codigoserver +'</textarea></li><input type="button" class="button button-large excluiraulas" style="margin-right:5px;" value="Excluir Aula" id="'+ultimaLI+'"/></fieldset>');
+
+		$a('#aulas').append('<li id="'+ultimaLI+'"><fieldset style="border:1px solid #999; padding:10px; margin-bottom:20px;"><legend><label class="aulas">Aula '+ultimaLI+'</label></legend><input type="text" class="tituloaula aula'+ultimaLI+'" required placeholder="Nome Aula '+ultimaLI+'" value="" name="aula'+ultimaLI+'"><textarea class="codigoaula codigo'+ultimaLI+'" placeholder="Código Aula '+ultimaLI+'" name="codigo'+ultimaLI+'">'+ codigoserver +'</textarea>'+descricaoAula+'</li><input type="button" class="button button-large excluiraulas" style="margin-right:5px;" value="Excluir Aula" id="'+ultimaLI+'"/></fieldset>');
 	});
 
 	$a('#addprotecao').live('click',function(){
@@ -220,10 +222,14 @@ var dados = 'arquivogd='+arquivogd+'&idPagina='+idPagina+'&importagd=sim&enviarx
 	var dadoscodigo = $a('.codigo'+itemCampo).val();
 	var pegapacotes = $a('.pacotesop'+itemCampo).val();
 	var peganivel =  $a('#peganivel'+itemCampo+' option:selected').val();
+	var descricaoaula = $a('.descricao'+itemCampo).val();
+	var descricaoaulaEncode = Base64.encode(descricaoaula);
 
-	var codigoServerEncode = $a.base64.encode(dadoscodigo);
+	var codigoServerEncode = Base64.encode(dadoscodigo);
 
-	var dados = 'aula='+itemCampo+'&nomeaula='+dadosaula+'&codigovideo='+codigoServerEncode+'&idPagina='+idPagina+'&nivelaluno='+peganivel+'&pacotesop='+pegapacotes+'&modifica=sim&enviarxml=nao';
+
+
+	var dados = 'aula='+itemCampo+'&nomeaula='+dadosaula+'&codigovideo='+codigoServerEncode+'&idPagina='+idPagina+'&nivelaluno='+peganivel+'&pacotesop='+pegapacotes+'&descricaoaulaEncode='+descricaoaulaEncode+'&modifica=sim&enviarxml=nao';
 	$a('.aquinomeaula'+itemCampo).html(dadosaula);
 
 

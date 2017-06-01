@@ -40,7 +40,7 @@ color: #fff;
 
 #TB_ajaxContent{width:95% !important;}
 
-.tituloaula, .codigoaula, .campostexto {
+.tituloaula, .codigoaula, .campostexto, .descricaoaula {
 	display:block;
 	width:100%;
 	padding:10px;

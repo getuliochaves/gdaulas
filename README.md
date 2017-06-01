@@ -1,10 +1,10 @@
-# gdaulas
+# gdAulas
 
 Plugin para criação de area de membros.
 
 ## Changelog
 
-### 1.7
+### 1.5
 * Funcao 1
 * Funcao 2
 * Funcao 3

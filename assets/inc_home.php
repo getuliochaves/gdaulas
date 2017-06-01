@@ -12,7 +12,7 @@ global $wpdb;
 $idPost = $_GET['post'];
 $pgdados = plugins_url().'/gdaulas/dados.php';
 ?>
-<script src="<?php echo plugins_url().'/gdaulas/js/jquery.base64.js'?>" charset="utf-8"></script>
+<script src="<?php echo plugins_url().'/gdaulas/js/base64.js'?>" charset="utf-8"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo plugins_url().'/gdaulas/css/estilo.css'; ?>">
 
 
@@ -64,7 +64,7 @@ ksort($novoArray);
 foreach($wp_roles->roles as $key=>$value){
 	$retonarlevel2 = explode('_',$key);
 	$retonarlevel = $retonarlevel2[1];
-	var_dump($retonarlevel2);
+	//var_dump($retonarlevel2);
 	if($retonarlevel != null){
 		$pegalevel = $pega_options[$retonarlevel.'_label'];
 		?>
@@ -119,8 +119,12 @@ if($totalaulas > 0){
 
 		$listaitensprotecao = $arrayprotecao[$classeaula];
 
+    //var_dump($listaitensprotecao);
+
 		$pacoteaula = $listaitensprotecao[pacotes];
 		$nivelaula = $listaitensprotecao[nivelaluno];
+    $descricaoaula1 = $listaitensprotecao[descricaoaula];
+    $descricaoaula = base64_decode($descricaoaula1);
 
 	?>
 
@@ -168,6 +172,7 @@ foreach($wp_roles->roles as $key=>$value){
     </div>
     <input type="text" class="tituloaula aula<?php echo $numeroaula; ?>" required placeholder="Nome Aula <?php echo $numeroaula; ?>" value="<?php echo $nomeaulafinal; ?>" name="<?php echo $classeaula; ?>">
 	<textarea class="codigoaula codigo<?php echo $numeroaula; ?>" placeholder="Código Aula <?php echo $numeroaula; ?>" name="codigo<?php echo $numeroaula; ?>"><?php echo $codigoAula; ?></textarea>
+  <textarea class="descricaoaula descricao<?php echo $numeroaula; ?>" placeholder="Descrição da Aula <?php echo $numeroaula; ?>" name="descricao<?php echo $numeroaula; ?>"><?php echo $descricaoaula; ?></textarea>
 	</li>
    </fieldset>
     <?php

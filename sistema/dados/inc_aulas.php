@@ -108,6 +108,7 @@ $niveisdeacesso = unserialize($niveisdeacesso);
 
 $pegaprotecaoaulas = $wpdb->get_var("SELECT meta_value FROM $wpdb->postmeta WHERE meta_key = 'gd_protecaoaulas' AND post_id = '$idModulo'");
 $protecaoAulas = unserialize($pegaprotecaoaulas);
+//var_dump($protecaoAulas);
 $aulaProt = $protecaoAulas[aula.$idList];
 //var_dump($aulaProt);
 
@@ -212,6 +213,9 @@ $destinobotao = $listaconfigbotao['destinobotao'];
 	</div>
 	<div class="bt_final"><a href="'.$monstralink.'" target="'.$destinobotao.'">'.$monstratexto.'</a></div>';
 };//fim Mostra o Botao
+
+$descricaoaula1 = $aulaProt['descricaoaula'];
+$descricaoaula = base64_decode($descricaoaula1);
 ?>
 
 
@@ -226,6 +230,15 @@ $destinobotao = $listaconfigbotao['destinobotao'];
     </h3>
   </div>
   <div class="panel-body">
+    <?php
+       if($descricaoaula != ''){
+     ?>
+    <div class="descricaoaula alert alert-<?php echo $estiloCor; ?>">
+      <strong>Descrição da Aula:</strong> <?php echo $descricaoaula; ?>
+    </div>
+    <?php
+     };
+     ?>
 
     <div class="mostraVideo">
       <?php echo $CodigoVideo; ?>

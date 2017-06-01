@@ -1,4 +1,7 @@
-<?php
+﻿<?php
+
+
+
   //pega o Id do Modulo
   $IDModuloAltera = $_POST['IDModuloAltera'];
   $estiloCor = $_POST['estiloCor'];
@@ -101,6 +104,7 @@ if($primeiraAula[aula] < $idList){
 			  $nomeAula = 'Aula '.$numeroAula.' - '.$tituloAula;
         $tnAula = 'aula'.$numeroAula;
         $protecaoAula = $protecaoAulas0[$tnAula]['nivelaluno'];
+
         //var_dump($protecaoAula);
 
         if($protecaoAula == 'publica'){
@@ -221,6 +225,7 @@ $validaNivel = true;
 if($validaPacote == true && $validaNivel == true ){
 $videoAula = $novoArray[$idList];
 $CodigoVideo = base64_decode($videoAula[video]);
+
 }
 //Mostra o botao
 else{
@@ -244,6 +249,9 @@ $destinobotao = $listaconfigbotao['destinobotao'];
 <div class="bt_final"><a href="'.$monstralink.'" target="'.$destinobotao.'">'.$monstratexto.'</a></div>';
 };//fim Mostra o Botao
 
+$descricaoaula1 = $aulaProt['descricaoaula'];
+$descricaoaula = base64_decode($descricaoaula1);
+//var_dump($aulaProt);
 
  ?>
 
@@ -262,9 +270,21 @@ $destinobotao = $listaconfigbotao['destinobotao'];
      </h3>
    </div>
    <div class="panel-body">
+
+     <?php
+        if($descricaoaula != ''){
+      ?>
+     <div class="descricaoaula alert alert-<?php echo $estiloCor; ?>">
+         <strong>Descrição da Aula:</strong> <?php echo $descricaoaula; ?>
+     </div>
+     <?php
+      };
+      ?>
+
      <div class="mostraVideo">
        <?php echo $CodigoVideo; ?>
      </div>
+
    </div>
 
    <div class="panel-footer antProx">

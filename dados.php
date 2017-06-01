@@ -12,6 +12,7 @@ $idPagina = $_POST['idPagina'];
 $aula = $_POST['aula'];
 $remover = $_POST['remover'];
 $protecao = $_POST['protecao'];
+$descricaoaula = $_POST['descricaoaulaEncode'];
 $modifica = $_POST['modifica'];
 $conteudobotao = $_POST['conteudobotao'];
 $gravaCor = $_POST['gravaCor'];
@@ -207,6 +208,7 @@ $contaprotecao = count($pegaprotecao);
 
 $arrayprotecao[$nomeaulafinalgrava]['nivelaluno'] = $niveldosalunos;
 $arrayprotecao[$nomeaulafinalgrava]['pacotes'] = $pacotedosalunos;
+$arrayprotecao[$nomeaulafinalgrava]['descricaoaula'] = $descricaoaula;
 
 }
 //var_dump($arrayprotecao);
@@ -257,6 +259,8 @@ if($contaprotecao == 0){
 	$arrayprotecao = array();
 	$arrayprotecao[$nomelimpoaula]['nivelaluno'] = $nivelaluno;
 	$arrayprotecao[$nomelimpoaula]['pacotes'] = $pacotesop;
+	$arrayprotecao[$nomelimpoaula]['descricaoaula'] = $descricaoaula;
+
 	$arrayprotecao = serialize($arrayprotecao);
 
 	$wpdb->insert($wpdb->postmeta, array('post_id' => $idPagina,'meta_key' => 'gd_protecaoaulas','meta_value' => $arrayprotecao));
@@ -267,6 +271,9 @@ $arrayprotecao = $wpdb->get_var("SELECT meta_value FROM $wpdb->postmeta WHERE me
 $arrayprotecao = unserialize($arrayprotecao);
 $arrayprotecao[$nomelimpoaula]['nivelaluno'] = $nivelaluno;
 $arrayprotecao[$nomelimpoaula]['pacotes'] = $pacotesop;
+$arrayprotecao[$nomelimpoaula]['descricaoaula'] = $descricaoaula;
+
+
 $arrayprotecao = serialize($arrayprotecao);
 
 
