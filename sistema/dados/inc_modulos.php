@@ -263,7 +263,7 @@ $descricaoaula = base64_decode($descricaoaula1);
  <!-- Inicio Coluna Video -->
  <div class="col-md-9" style="margin-top:-20px !important;">
 
- <div class="panel panel-<?php echo $estiloCor; ?> ">
+ <div class="panel panel-<?php echo $estiloCor; ?> ctdvideo">
    <div class="list-group">
      <h3 class="tituloaula" style="margin:0;">
         <a href="#" class="list-group-item list-group-item-<?php echo $estiloCor; ?>"><i class="fa fa-youtube-play"></i> <?php echo $tituloAula1; ?></a>

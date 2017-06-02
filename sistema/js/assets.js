@@ -46,6 +46,21 @@ $a('.mostraVideo').html('<div class="loading"><h4>Aguarde,Carregando Aula...</h4
 
 						});
 
+						setTimeout(function() {
+								var alturaDivVideo = $a('.ctdvideo').height();
+								var alturaMenuGeral = $a('.lsmodulos').height();
+								if(alturaDivVideo < 50){
+									alturaDivVideo = 400;
+								}
+
+								if(alturaMenuGeral > alturaDivVideo){
+								var pct = 4.8*(alturaDivVideo / 100);
+								alturaDivVideo = alturaDivVideo - pct;
+								$a(".menuGeral").css({ "height": +alturaDivVideo+"px", "overflow": "auto"});
+							};
+
+						}, 600);
+
 		});
 
 
@@ -76,6 +91,21 @@ $a('.mostraVideo').html('<div class="loading"><h4>Aguarde,Carregando Aula...</h4
 		 }
             });
 
+						setTimeout(function() {
+								var alturaDivVideo = $a('.ctdvideo').height();
+								var alturaMenuGeral = $a('.lsmodulos').height();
+								if(alturaDivVideo < 50){
+									alturaDivVideo = 400;
+								}
+
+								if(alturaMenuGeral > alturaDivVideo){
+								var pct = 4.8*(alturaDivVideo / 100);
+								alturaDivVideo = alturaDivVideo - pct;
+								$a(".menuGeral").css({ "height": +alturaDivVideo+"px", "overflow": "auto"});
+							};
+
+						}, 600);
+
 
 });
 
@@ -88,6 +118,21 @@ $a('.moduloscurso').click(function(){
 
 $a('#submit').addClass('btn btn-primary btn-lg');
 $a('#comment').attr('required', 'required');
+
+setTimeout(function() {
+		var alturaDivVideo = $a('.ctdvideo').height();
+		var alturaMenuGeral = $a('.lsmodulos').height();
+		if(alturaDivVideo < 50){
+			alturaDivVideo = 400;
+		}
+
+		if(alturaMenuGeral > alturaDivVideo){
+		var pct = 4.8*(alturaDivVideo / 100);
+		alturaDivVideo = alturaDivVideo - pct;
+		$a(".menuGeral").css({ "height": +alturaDivVideo+"px", "overflow": "auto"});
+	};
+
+}, 600);
 
 
 });

@@ -37,7 +37,7 @@ if(count($idDoModuloEx) > 1){
 					$pegaTituloModulo = $wpdb->get_var("SELECT post_title FROM $wpdb->posts WHERE ID = '$idDoModuloCerto'");
 				?>
 						<li class="moduloscurso" id="<?php echo $idDoModuloCerto; ?>">
-							<a href="#"><?php echo $pegaTituloModulo; ?></a>
+							<a href="#listModulo"><?php echo $pegaTituloModulo; ?></a>
 						</li>
 				<?php
 				};

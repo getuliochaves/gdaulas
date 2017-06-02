@@ -221,3 +221,7 @@ font-weight:bold;
 .descricaoaula{
   margin-top: -20px;
 }
+
+.moduloscurso{
+  cursor: pointer;
+}
