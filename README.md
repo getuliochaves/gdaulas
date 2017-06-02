@@ -3,6 +3,9 @@
 Plugin para criação de area de membros.
 
 ## Changelog
+### 1.8
+* Acrecentamos a Funcao Adicionar descrição da aula.
+* Acrecentamos a Funcao de ícones nas aulas.
 
 ### 1.5
 * Funcao 1
