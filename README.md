@@ -4,11 +4,9 @@ Plugin para criação de area de membros.
 
 ## Changelog
 
-### 1.5
-* Funcao 1
-* Funcao 2
-* Funcao 3
-* Funcao 4
+### 1.9
+* Resolvendo questões de servidor
+* Função Importar e Exportar Aulas Atualizada
 
 ## Credits
 Desenvolvido por Geracao digital . geracaodigital.com
