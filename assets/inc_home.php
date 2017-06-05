@@ -1,4 +1,5 @@
 ﻿<a href="#TB_inline?width=600&height=540&inlineId=modal_aulas_gdaulas" class="thickbox button button-primary button-large">Gerenciador de Aulas</a>
+
 <h3>Codigo deste Modulo</h3>
 <?php
 $idPost = $_GET['post'];
@@ -14,9 +15,16 @@ $pgdados = plugins_url().'/gdaulas/dados.php';
 ?>
 <script src="<?php echo plugins_url().'/gdaulas/js/base64.js'?>" charset="utf-8"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo plugins_url().'/gdaulas/css/estilo.css'; ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo plugins_url().'/gdaulas/sistema/css/bootstrap3.3.7.css'; ?>">
+
+<style>
+  body{
+    background-color: #f1f1f1 !important;
+  }
+</style>
 
 
-<div style="right:1px; bottom:1px; position:absolute; background:#ccc; padding:15px; display:none;" class="salvarprot">
+<div class="salvarprot">
 <input type="submit" class="button button-primary button-large" value="Salvar Configurações" onClick="window.location.reload()"/>
 </div>
 <form class="formularioaulas" method="post" id="formularioaulas" action="<?php echo $pgdados; ?>" name="formularioaulas" id="formularioaulas">
@@ -47,46 +55,67 @@ ksort($novoArray);
 <div class="menutopogdaulaslista">
 <div class="botoesmenu">
 <input type="button" class="button button-primary button-large btgerenciaraulas" value="Gerenciar Aulas" />
-<input type="button" class="button button-primary button-large btconteudoprotegido" value="Configurar Conteúdo Protegido" />
+<input type="button" class="button button-primary button-large btconteudoprotegido" value="Msg Ct Protegido" />
 <input type="button" class="button button-primary button-large btestilocor" value="Estilos de Cor" />
 <input type="button" class="button button-primary button-large btexportarxml" value="Exportar Aulas" />
 <input type="button" class="button button-primary button-large btimportarxmlgd" value="Importar Aulas" />
+<input type="button" style="display:none;" class="button button-primary button-large btantprox" value="Proximo/Anterior" />
 </div>
 
- <div class="protegertodasaulas">Alterar Todas as Aulas: <?php
-      global $wp_roles;
-	  $pega_options = get_option('ws_plugin__optimizemember_options');
-	?>
-      <select class="form-control" name="nivelprotegertodas" id="nivelprotegertodas">
-      <option value="">Qual o nível do Aluno?</option>
-       <option value="publica">Aula Pública</option>
-      <?php
-foreach($wp_roles->roles as $key=>$value){
-	$retonarlevel2 = explode('_',$key);
-	$retonarlevel = $retonarlevel2[1];
-	//var_dump($retonarlevel2);
-	if($retonarlevel != null){
-		$pegalevel = $pega_options[$retonarlevel.'_label'];
-		?>
-		<option value="<?php echo $key; ?>"><?php echo $pegalevel; ?></option>
-		<?php
-	}else{
-		?>
-        <option value="<?php echo $key; ?>"><?php echo $value['name']; ?></option>
-		<?php
-		}
 
-	}
-?>
-       </select>
-    Pacotes:
-    <input type="text" class="todospacotesop" placeholder="" value="" name="todospacotesop">
-    <input type="button" class="button button-primary button-large" style="margin-right:5px;" value="Aplicar" id="addprotecao"/>
+<div class="protegertodasaulas dvsoculta">
+    <div class="form-group ">
+      <label for="inputText" class="col-sm-4 control-label">Alterar Todas as Aulas:</label>
+      <div class="col-sm-8">
+
+
+        <?php
+             global $wp_roles;
+       	  $pega_options = get_option('ws_plugin__optimizemember_options');
+       	?>
+             <select class="form-control" name="nivelprotegertodas" id="nivelprotegertodas">
+             <option value="">Qual o nível do Aluno?</option>
+              <option value="publica">Aula Pública</option>
+             <?php
+       foreach($wp_roles->roles as $key=>$value){
+       	$retonarlevel2 = explode('_',$key);
+       	$retonarlevel = $retonarlevel2[1];
+       	//var_dump($retonarlevel2);
+       	if($retonarlevel != null){
+       		$pegalevel = $pega_options[$retonarlevel.'_label'];
+       		?>
+       		<option value="<?php echo $key; ?>"><?php echo $pegalevel; ?></option>
+       		<?php
+       	}else{
+       		?>
+               <option value="<?php echo $key; ?>"><?php echo $value['name']; ?></option>
+       		<?php
+       		}
+
+       	}
+       ?>
+              </select>
+
+
+      </div>
     </div>
+
+    <div class="form-group ">
+      <label for="inputText" class="col-sm-4 control-label">Pacotes:</label>
+      <div class="col-sm-8">
+
+        <input type="text" class="todospacotesop" placeholder="" value="" name="todospacotesop">
+        <input type="button" class="button button-primary button-large" style="margin-right:5px;" value="Aplicar" id="addprotecao"/>
+
+      </div>
+    </div>
+
+  </div>
+
+
 </div><!-- Fim da Div Conteudo Fixo topo -->
 
-
-<div class="addnovaaula" style="left:1px; bottom:1px; position:absolute; background:#ccc; padding:15px;">
+<div class="addnovaaula dvsoculta" style="left:1px; bottom:1px; position:absolute; background:#ccc; padding:15px;">
 <select name="server" class="server">
 	<option value="vimeo">Vídeo do Vímeo</option>
     <option value="youtube">Vídeo do YouTube</option>
@@ -96,7 +125,7 @@ foreach($wp_roles->roles as $key=>$value){
 <input type="button" class="button button-primary button-large" style="margin-right:5px;" value="Adicionar Nova Aula" id="novaaula"/>
 </div>
 <!-- Inicio da Div ConteudoAulas -->
-<div class="ctgerenciaraulas">
+<div class="ctgerenciaraulas dvsoculta">
 
  <div class="recebedados"></div>
   <br>
@@ -139,37 +168,49 @@ if($totalaulas > 0){
   <input type="button" class="botaoexcluir excluiraulas" style="margin-right:5px;" value="X" id="<?php echo $numeroaula; ?>"/>
 
 
+  <div class="form-group ">
+    <label for="inputText" class="col-sm-4 control-label">Proteger Aula:</label>
+    <div class="col-sm-8">
 
-    <div>Proteger Aula: <?php
-      global $wp_roles;
-	  $pega_options = get_option('ws_plugin__optimizemember_options');
-
-	?>
-      <select class="form-control" name="peganivel<?php echo $numeroaula; ?>" id="peganivel<?php echo $numeroaula; ?>">
-      <option <?php if($pacoteaula == ''){?> selected="selected" <?php };?> value="">Qual o nível do Aluno?</option>
-       <option <?php if($nivelaula == 'publica'){?> selected="selected" <?php };?> value="publica">Aula Pública</option>
       <?php
-foreach($wp_roles->roles as $key=>$value){
-	$retonarlevel2 = explode('_',$key);
-	$retonarlevel = $retonarlevel2[1];
-	if($retonarlevel != null){
-		$pegalevel = $pega_options[$retonarlevel.'_label'];
-		?>
-		<option <?php if($nivelaula ==  $key){?> selected="selected" <?php }; ?> value="<?php echo $key; ?>"><?php echo $pegalevel; ?></option>
-		<?php
-	}else{
-		?>
-        <option <?php if($nivelaula ==  $key){?> selected="selected" <?php }; ?> value="<?php echo $key; ?>"><?php echo $value['name']; ?></option>
-		<?php
-		}
+        global $wp_roles;
+  	  $pega_options = get_option('ws_plugin__optimizemember_options');
 
-	}
-?>
-       </select>
-    Pacotes OptimizePress:
-    <input type="text" style="width:200px;" class="pacotesop<?php echo $numeroaula; ?>" placeholder="Ex: pagmember,downloads" value="<?php echo $pacoteaula;?>" name="pacotesop<?php echo $numeroaula; ?>">
+  	?>
+        <select class="form-control" name="peganivel<?php echo $numeroaula; ?> pcts" id="peganivel<?php echo $numeroaula; ?>">
+        <option <?php if($pacoteaula == ''){?> selected="selected" <?php };?> value="">Qual o nível do Aluno?</option>
+         <option <?php if($nivelaula == 'publica'){?> selected="selected" <?php };?> value="publica">Aula Pública</option>
+        <?php
+  foreach($wp_roles->roles as $key=>$value){
+  	$retonarlevel2 = explode('_',$key);
+  	$retonarlevel = $retonarlevel2[1];
+  	if($retonarlevel != null){
+  		$pegalevel = $pega_options[$retonarlevel.'_label'];
+  		?>
+  		<option <?php if($nivelaula ==  $key){?> selected="selected" <?php }; ?> value="<?php echo $key; ?>"><?php echo $pegalevel; ?></option>
+  		<?php
+  	}else{
+  		?>
+          <option <?php if($nivelaula ==  $key){?> selected="selected" <?php }; ?> value="<?php echo $key; ?>"><?php echo $value['name']; ?></option>
+  		<?php
+  		}
+
+  	}
+  ?>
+         </select>
 
     </div>
+  </div>
+
+  <div class="form-group ">
+    <label for="inputText" class="col-sm-4 control-label">Pacotes OptimizePress:</label>
+    <div class="col-sm-8">
+
+      <input type="text" class="pacotesop<?php echo $numeroaula; ?> pcts" placeholder="Ex: pagmember,downloads" value="<?php echo $pacoteaula;?>" name="pacotesop<?php echo $numeroaula; ?>">
+
+    </div>
+  </div>
+
     <input type="text" class="tituloaula aula<?php echo $numeroaula; ?>" required placeholder="Nome Aula <?php echo $numeroaula; ?>" value="<?php echo $nomeaulafinal; ?>" name="<?php echo $classeaula; ?>">
 	<textarea class="codigoaula codigo<?php echo $numeroaula; ?>" placeholder="Código Aula <?php echo $numeroaula; ?>" name="codigo<?php echo $numeroaula; ?>"><?php echo $codigoAula; ?></textarea>
   <textarea class="descricaoaula descricao<?php echo $numeroaula; ?>" placeholder="Descrição da Aula <?php echo $numeroaula; ?>" name="descricao<?php echo $numeroaula; ?>"><?php echo $descricaoaula; ?></textarea>
@@ -192,7 +233,78 @@ if($totalaulas == 0){
 
 </div><!-- Fim da Div ConteudoAulas -->
 
-<div class="exportaraulas">
+
+<div class="antprox dvsoculta">
+  <div class="recebedados"></div>
+
+  <div class="col-md-12">
+
+				<div class="form-group">
+					<label class="col-md-5" for="nomeBotao">
+						      Nome Botões Anterior e Proxima:
+					</label>
+          <div class="col-md-7">
+					       <input type="text" class="form-control nomeBotao" name="nomeBotao" />
+          </div>
+				</div>
+
+        <div class="form-group">
+					<label class="col-md-5" for="exibirBotao">
+						      Exibir Botões Anterior e Proxima:
+					</label>
+          <div class="col-md-7">
+					       <input type="radio" class="form-control exibirBotao" name="exibirBotao" value="sim"/> Sim, marque para Exibir<br/>
+                 <input type="radio" class="form-control exibirBotao" name="exibirBotao" value="nao" /> Não, marque para não Exibir:
+          </div>
+				</div>
+
+        <div class="form-group">
+					<label class="col-md-5" for="pgProxima">
+						      Selecione a Pagina Próxima:
+					</label>
+          <div class="col-md-7">
+
+            <?php
+            wp_dropdown_pages($args = array(
+           'sort_order'   => 'ASC',
+           'sort_column'  => 'post_title',
+           'hierarchical' => 1,
+           'class' => 'pgProxima',
+           'id' => '',
+           'name' => '',
+           'post_type' => 'page'));
+          ?>
+
+          </div>
+				</div>
+
+        <div class="form-group">
+					<label class="col-md-5" for="pgAnterior">
+						      Selecione a Pagina Próxima:
+					</label>
+          <div class="col-md-7 ">
+
+            <?php
+            wp_dropdown_pages($args = array(
+           'sort_order'   => 'ASC',
+           'sort_column'  => 'post_title',
+           'hierarchical' => 1,
+           'class' => 'pgAnterior',
+           'id' => '',
+           'name' => '',
+           'post_type' => 'page'));
+          ?>
+
+          </div>
+				</div>
+
+
+    </div>
+
+
+</div>
+
+<div class="exportaraulas dvsoculta">
   <div class="recebedados"></div>
   <input type="button" class="button button-primary button-large btexcluirarquivos" value="Excluir Arquivos Gerados" />
 </div>
@@ -200,7 +312,7 @@ if($totalaulas == 0){
 
 
 <!-- Inicio da Div importarxmlgd -->
-<div class="importarxmlgd">
+<div class="importarxmlgd dvsoculta">
 
   <div class="form-group">
     <label for="inputText" class="col-sm-3 control-label">Arquivo XML GdAulas:</label>
@@ -252,7 +364,7 @@ jQuery(document).ready(function($){
 <!-- Inicio da Div fim -->
 
 <!-- Inicio da Div estilocor -->
-<div class="estilocor">
+<div class="estilocor dvsoculta">
 
 
 
@@ -281,7 +393,7 @@ jQuery(document).ready(function($){
 <!-- FIM da Div estilocor -->
 
 <!-- Inicio da Div ConfigurarProtecao -->
-<div class="ctconteudoprotegido">
+<div class="ctconteudoprotegido dvsoculta">
 
   <?php
   $pegaconfigbotao = $wpdb->get_var("SELECT meta_value FROM $wpdb->postmeta WHERE meta_key = 'configbotao' AND post_id = '$idPost'");

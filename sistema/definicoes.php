@@ -1,8 +1,11 @@
 <?php
 //define a base do sistema
 $baseSistema = get_site_url().'/wp-content/plugins/gdaulas/sistema/';
+$baseSistemaR = get_site_url().'/wp-content/plugins/gdaulas/';
 //define pagina de dados
-$pgdados = $baseSistema.'pgdados.php';
+$pgdados = get_site_url();
+
+$drmm = base64_decode('dmRfZ2RhdWxhcw==');
 
 //Define quais ids foram passados pelo shortcode
 $idDoModuloIni = $atts['iddomodulo'];
@@ -12,4 +15,5 @@ $idDoModulo = $idDoModuloEx[0];
 if($idDoModulo == null){
 	$idDoModulo = get_the_ID();
 }
+
  ?>

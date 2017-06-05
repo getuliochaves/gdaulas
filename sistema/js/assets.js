@@ -2,9 +2,11 @@ $a = jQuery.noConflict();
 
 $a(document).ready(function(){
 
+	linkPaginaDados = linkPaginaDados + '/wp-content/plugins/';
+	linkPaginaDados = linkPaginaDados + 'gdaulas/sistema/pgdados.php';
 
 		var mudaModulo = 'sim';
-		var dadosmodulos = {IDModuloAltera : moduloInicial,  mudaModulo : mudaModulo, capacidades : capacidades, niveisdeacesso: niveisdeacesso, estiloCor:estiloCor}
+		var dadosmodulos = {IDModuloAltera : moduloInicial,  mudaModulo : mudaModulo, capacidades : capacidades, niveisdeacesso: niveisdeacesso, estiloCor:estiloCor, nkkkss: nkkkss}
 $a('.mostraVideo').html('<div class="loading"><h4>Aguarde,Carregando Aula...</h4><br/><img src="'+loadingImg+'"/></div>');
 		$a.ajax
 					 ({
@@ -29,7 +31,7 @@ $a('.mostraVideo').html('<div class="loading"><h4>Aguarde,Carregando Aula...</h4
 			$a('.mostraVideo').html('<div class="loading"><h4>Aguarde,Carregando Aula...</h4><br/><img src="'+loadingImg+'"/></div>');
 		var IDModuloAltera = $a(this).attr('id');
 		var mudaModulo = 'sim';
-		var dadosmodulos = {IDModuloAltera : IDModuloAltera,  mudaModulo : mudaModulo, capacidades : capacidades, niveisdeacesso: niveisdeacesso, estiloCor:estiloCor}
+		var dadosmodulos = {IDModuloAltera : IDModuloAltera,  mudaModulo : mudaModulo, capacidades : capacidades, niveisdeacesso: niveisdeacesso, estiloCor:estiloCor, nkkkss: nkkkss}
 		$a.ajax
 					 ({
 							 type: 'POST',
@@ -79,7 +81,7 @@ $a('.mostraVideo').html('<div class="loading"><h4>Aguarde,Carregando Aula...</h4
 	var mudaAula = 'sim';
 
 $a('.mostraVideo').html('<div class="loading"><h4>Aguarde,Carregando Aula...</h4><br/><img src="'+loadingImg+'"/></div>');
-	var dadosaula = {idList : idList,  idModulo : idModulo, mudaAula : mudaAula, capacidades : capacidades, niveisdeacesso: niveisdeacesso, estiloCor:estiloCor}
+	var dadosaula = {idList : idList,  idModulo : idModulo, mudaAula : mudaAula, capacidades : capacidades, niveisdeacesso: niveisdeacesso, estiloCor:estiloCor, nkkkss: nkkkss}
       $a.ajax
              ({
                  type: 'POST',

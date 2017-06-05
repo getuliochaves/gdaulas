@@ -1,35 +1,33 @@
 ﻿$a = jQuery.noConflict();
 $a(document).ready(function(){
-	$a('.ctconteudoprotegido').hide();
+	$a('.dvsoculta').hide();
 	$a('.salvarprot').show();
-	$a('.estilocor').hide();
-	$a('.importarxmlgd').hide();
-	$a('.exportaraulas').hide();
+	$a('.ctgerenciaraulas').show();
+	$a('.protegertodasaulas').show();
+	$a('.addnovaaula').show();
+
+
+	$a('.btantprox').live('click',function(){
+		$a('.dvsoculta').hide();
+		$a('.antprox').show();
+		$a('.recebedados').html('');
+	});
 
 
 
 	$a('.btgerenciaraulas').live('click',function(){
+		$a('.dvsoculta').hide();
 		$a('.ctgerenciaraulas').show();
-		$a('.ctconteudoprotegido').hide();
 		$a('.protegertodasaulas').show();
 		$a('.addnovaaula').show();
-		$a('.salvarprot').hide();
-		$a('.estilocor').hide();
-		$a('.importarxmlgd').hide();
-		$a('.exportaraulas').hide();
 		$a('.recebedados').html('');
 
 	});
 
 	$a(".btconteudoprotegido").live('click',function(){
-		$a('.ctgerenciaraulas').hide();
+		$a('.dvsoculta').hide();
 		$a('.ctconteudoprotegido').show();
-		$a('.protegertodasaulas').hide();
-		$a('.addnovaaula').hide();
 		$a('.salvarprot').show();
-		$a('.estilocor').hide();
-		$a('.importarxmlgd').hide();
-		$a('.exportaraulas').hide();
 		$a('.recebedados').html('');
 
 	});
@@ -38,14 +36,9 @@ $a(document).ready(function(){
 
 
 	$a('.btestilocor').live('click',function(){
-		$a('.ctgerenciaraulas').hide();
-		$a('.ctconteudoprotegido').hide();
-		$a('.protegertodasaulas').hide();
-		$a('.addnovaaula').hide();
+		$a('.dvsoculta').hide();
 		$a('.salvarprot').show();
 		$a('.estilocor').show();
-		$a('.importarxmlgd').hide();
-		$a('.exportaraulas').hide();
 		$a('.recebedados').html('');
 
 
@@ -54,13 +47,7 @@ $a(document).ready(function(){
 	});
 
 	$a('.btimportarxmlgd').live('click',function(){
-		$a('.ctgerenciaraulas').hide();
-		$a('.ctconteudoprotegido').hide();
-		$a('.protegertodasaulas').hide();
-		$a('.addnovaaula').hide();
-		$a('.salvarprot').hide();
-		$a('.estilocor').hide();
-		$a('.exportaraulas').hide();
+		$a('.dvsoculta').hide();
 		$a('.importarxmlgd').show();
 		$a('.recebedados').html('');
 });
@@ -84,13 +71,7 @@ $a('.btexcluirarquivos').live('click',function(){
 
 
 $a('.btexportarxml').click(function(){
-	$a('.ctgerenciaraulas').hide();
-	$a('.ctconteudoprotegido').hide();
-	$a('.protegertodasaulas').hide();
-	$a('.addnovaaula').hide();
-	$a('.salvarprot').hide();
-	$a('.estilocor').hide();
-	$a('.importarxmlgd').hide();
+	$a('.dvsoculta').hide();
 	$a('.exportaraulas').show();
 	$a('.recebedados').html('');
 
@@ -311,6 +292,16 @@ var dadosbotaoconfig = 'linkbotao='+linkbotao+'&textbotao='+textbotao+'&destinob
                 }
             });	//Fim do Ajax
 
+	});
+
+	$a('.pgAnterior').live('keyup change',function(){
+		var paginaID = $a('.pgAnterior option:selected').val();
+		alert(paginaID);
+	});
+
+	$a('.pgProxima').live('keyup change',function(){
+		var pgProxima = $a('.pgProxima option:selected').val();
+		alert(pgProxima);
 	});
 
 

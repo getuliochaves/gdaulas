@@ -3,7 +3,7 @@
 Plugin Name: gdaulas
 Plugin URI: http://geracaodigital.com
 Description: Plugin para Gerenciar Aulas e Criar o template de área de membros.
-Version: 1.8
+Version: 1.9
 Author: Getulio Chaves
 Author URI: http://geracaodigital.com
 License: GPLv2

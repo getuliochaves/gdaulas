@@ -1,9 +1,11 @@
 ﻿<?php
 global $wpdb;
 include_once('definicoes.php');
-
 $loadingImg = get_site_url().'/wp-content/plugins/gdaulas/imagens/loading.gif';
-
+$jshu = $wpdb->get_var("SELECT option_value FROM $wpdb->options WHERE option_name = '$drmm'");
+$jshu = unserialize($jshu);
+$tkkkks = $jshu[key];
+$nkkkss = base64_encode($tkkkks);
 $idmddd = $idDoModuloEx[0];
 $estiloCor = $wpdb->get_var("SELECT meta_value FROM $wpdb->postmeta WHERE meta_key = 'estiloCor' AND post_id = '$idmddd'");
 if($estiloCor == '' or count($estiloCor) == 0){
@@ -17,12 +19,8 @@ include_once('inclusoes.php');
 <?php
 if(count($idDoModuloEx) > 1){
 ?>
-
 	<!-- Inicio Menu Modulos -->
-
 	<div class="row">
-
-
 		<nav class="navbar btn-<?php echo $estiloCor; ?> lsmenu">
   <div class="col-md-12">
     <div class="navbar-header">
@@ -110,13 +108,13 @@ if(count($idDoModuloEx) > 1){
 </div>
 
 <script>
+//var pgd = '<?php echo $pgdados;?>';
 var linkPaginaDados = 	'<?php echo $pgdados;?>';
 var moduloInicial = '<?php echo $idDoModuloEx[0]?>';
 var capacidades = '<?php echo $capacidades; ?>';
 var niveisdeacesso = '<?php echo $niveisdeacesso; ?>';
 var estiloCor = '<?php echo $estiloCor; ?>';
 var loadingImg = '<?php echo $loadingImg; ?>';
-
-
+var nkkkss = '<?php echo $nkkkss; ?>';
 </script>
 <script src="<?php echo $baseSistema.'js/assets.js'?>" charset="utf-8"></script>

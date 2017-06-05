@@ -31,6 +31,8 @@ if($exluirarquivos == 'sim'){
 if($enviarxml == 'sim'){
 
 	$pegaaula = $wpdb->get_results("SELECT meta_key,meta_value FROM $wpdb->postmeta WHERE meta_key like '%*aula%' AND post_id = '$idPagina' ORDER BY meta_key ASC");
+	$pegaprotecao = $wpdb->get_var("SELECT meta_value FROM $wpdb->postmeta WHERE meta_key = 'gd_protecaoaulas' AND post_id = '$idPagina'");
+	$pegaprotecao = base64_encode($pegaprotecao);
 	//var_dump($pegaaula);
 
 	//Abrindo documento xml
@@ -49,6 +51,7 @@ if($enviarxml == 'sim'){
 
 
 	$xml .= "</aulas>". PHP_EOL;
+	$xml .= "<protecao>$pegaprotecao</protecao>". PHP_EOL;
 	//Fecha
 	$xml .= "</listaaulas>";
 
@@ -98,13 +101,16 @@ $arquivogd = $_POST['arquivogd'];
 $xml = simplexml_load_file($arquivogd);
 $arrayxml = json_decode(json_encode($xml), TRUE);
 
-//var_dump($xml);
 
-$pegaDAUlas = $wpdb->get_var("SELECT meta_value FROM $wpdb->postmeta WHERE post_id = '$idPagina' AND meta_key like '%*aula%'");
-if(count($pegaDAUlas) == 0){
+
+
 $wpdb->query("DELETE FROM $wpdb->postmeta WHERE post_id = '$idPagina' AND meta_key like '%*aula%'");
-};
+$wpdb->query("DELETE FROM $wpdb->postmeta WHERE post_id = '$idPagina' AND meta_key = 'gd_protecaoaulas'");
+$protecao = $arrayxml['protecao'];
+$protecao = base64_decode($protecao);
 
+$wpdb->insert($wpdb->postmeta, array('post_id' => $idPagina,'meta_key' => 'gd_protecaoaulas','meta_value' => $protecao));
+unset($arrayxml['protecao']);
 
 foreach ($arrayxml as $listaAulas88) {
 	$nomeAulaLS = $listaAulas88[nomeAula];
@@ -143,6 +149,10 @@ foreach ($arrayxml as $listaAulas88) {
 //  $wpdb->insert($wpdb->postmeta, array('post_id' => $idPagina,'meta_key' => $nomeAula,'meta_value' => $dadosAula));
 
 };
+
+
+
+
 
 echo '<h3>Aulas Atualizadas Com sucesso!.</h3>';
 
